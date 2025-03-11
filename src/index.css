@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Halvetica', sans-serif;
   color: var(--text-color);
   font-weight: 700;
   background-color: var(--background-white);
@@ -68,25 +68,6 @@ button {
   display: none;
 }
 
-@media (min-width: 768px) {
-  .container {
-    max-width: unset;
-    width: 768px;
-    padding: 32px;
-  }
-}
 
-@media (min-width: 1440px) {
-  #root {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .container {
-    width: 1440px;
-    margin: 0 auto;
-    flex-direction: row;
-  }
-}
+

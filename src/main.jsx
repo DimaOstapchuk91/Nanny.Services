@@ -9,11 +9,7 @@ import { Provider } from 'react-redux';
 import { persistor, store } from './redux/store.js';
 
 createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
