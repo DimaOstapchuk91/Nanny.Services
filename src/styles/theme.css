@@ -1,29 +1,28 @@
 :root {
-  --background-white: #ffffff;
-  --bg-btn-dark-gray: #323f47;
-  --bg-component-gray: #f0eff4;
-  --bg-component-green: #9be1a0;
-  --bg-component-dark-green: #87d28d;
-  --dark-gray-calendar: rgba(50, 63, 71, 0.2);
-  --text-color: #323f47;
-  --input-red: #ef5050;
-  --black: #2f2f2f;
-  --modal-backdrop: rgba(47, 47, 47, 0.6);
-  --menu-backdrop-color-light: rgba(50, 63, 71, 0.4);
+  --background-page: #f3f3f3;
+  --bg-component-white: #f0eff4;
+  --bg-theme: #0957c3;
+  --bg-theme-light: rgba(9, 87, 195, 0.2);
+  --text-color-black: #11101c;
+  --text-color-white: #fbfbfb;
+  --text-light-gray: rgba(17, 16, 28, 0.3);
+  --text-base-gray: rgba(17, 16, 28, 0.5);
+  --text-dark-gray: #8a8a89;
+  --color-light-green: #38cd3e;
+  --color-yellow: #ffc531;
+  --color-light-red: rgba(240, 63, 59, 0.2);
+
   transition: background-color 500ms ease;
 }
 
-/* dark theme*/
-.dark {
-  --background-white: #ffffff;
-  --bg-btn-dark-gray: #323f47;
-  --bg-component-gray: #f0eff4;
-  --bg-component-green: #9be1a0;
-  --dark-gray-calendar: rgba(50, 63, 71, 0.2);
-  --text-color: #323f47;
-  --input-red: #ef5050;
-  --black: #2f2f2f;
-  --modal-backdrop: rgba(47, 47, 47, 0.6);
+/* red theme */
+.red {
+  --bg-theme: #f03f3b;
+  --bg-theme-light: rgba(240, 63, 59, 0.2);
+}
 
-  transition: background-color 500ms ease;
+/* green theme */
+.green {
+  --bg-theme: #103931;
+  --bg-theme-light: rgba(16, 57, 49, 0.2);
 }

@@ -10,14 +10,10 @@ html {
 }
 
 body {
-  font-family: 'Halvetica', sans-serif;
-  color: var(--text-color);
-  font-weight: 700;
-  background-color: var(--background-white);
+  font-family: 'Helvetica Neue', sans-serif;
+  color: var(--text-color-black);
+  background-color: var(--background-page);
 }
-
-/* #root {
-} */
 
 h1,
 h2,
@@ -56,18 +52,11 @@ button {
 }
 
 .container {
-  max-width: 375px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  padding: 32px;
 }
 
 .container::-webkit-scrollbar {
   display: none;
 }
-
-
-
-
