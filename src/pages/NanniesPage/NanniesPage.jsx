@@ -1,4 +1,10 @@
+import NanniesList from '../../components/NanniesList/NanniesList.jsx';
+
 const NanniesPage = () => {
-  return <div>NanniesPage</div>;
+  return (
+    <>
+      <NanniesList />
+    </>
+  );
 };
 export default NanniesPage;

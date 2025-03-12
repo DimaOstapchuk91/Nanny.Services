@@ -1,4 +1,10 @@
+import AuthForm from '../../components/AuthForm/AuthForm.jsx';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <AuthForm />
+    </div>
+  );
 };
 export default HomePage;
