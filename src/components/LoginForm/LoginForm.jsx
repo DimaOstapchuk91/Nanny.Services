@@ -2,7 +2,7 @@
 import { loginUser } from '../../services/authService.js';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { orderSchemaLogin } from '../../utils/formValidations.jsx';
+import { orderSchemaLogin } from '../../utils/formValidations.js';
 import s from './LoginForm.module.css';
 
 const LoginForm = ({ onClose }) => {
