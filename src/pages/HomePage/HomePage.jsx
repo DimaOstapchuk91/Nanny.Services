@@ -1,9 +1,9 @@
-import AuthForm from '../../components/AuthForm/AuthForm.jsx';
+import LoginForm from '../../components/LoginForm/LoginForm.jsx';
 
 const HomePage = () => {
   return (
     <div>
-      <AuthForm />
+      <LoginForm />
     </div>
   );
 };
