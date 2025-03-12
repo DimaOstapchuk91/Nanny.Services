@@ -26,7 +26,7 @@ const AuthMenu = () => {
         </li>
       </ul>
       <Modal isOpen={isLoginOpen} onClose={handleClickLoginClose}>
-        <LoginForm />
+        <LoginForm onClose={handleClickLoginClose} />
       </Modal>
     </>
   );

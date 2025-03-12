@@ -1,6 +1,6 @@
 :root {
   --background-page: #f3f3f3;
-  --bg-component-white: #f0eff4;
+  --bg-component-white: #fbfbfb;
   --bg-theme: #0957c3;
   --bg-theme-light: rgba(9, 87, 195, 0.2);
   --text-color-black: #11101c;
@@ -11,6 +11,7 @@
   --color-light-green: #38cd3e;
   --color-yellow: #ffc531;
   --color-light-red: rgba(240, 63, 59, 0.2);
+  --color-red: #f03f3b;
 
   transition: background-color 500ms ease;
 }
