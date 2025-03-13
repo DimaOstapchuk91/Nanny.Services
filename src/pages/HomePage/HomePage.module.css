@@ -1,5 +1,15 @@
+.homeBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: auto;
+}
+
 .pageWrap {
   display: flex;
+  width: 100%;
   border-radius: 30px;
   overflow: hidden;
   position: relative;

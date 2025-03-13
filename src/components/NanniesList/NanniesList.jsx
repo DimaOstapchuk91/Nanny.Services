@@ -8,7 +8,7 @@ const NanniesList = () => {
     fetchNannies().then(setNannies);
   }, []);
 
-  console.log(nannies.id);
+  console.log(nannies[0]?.id);
   return (
     <ul>
       {nannies?.map(nanny => (

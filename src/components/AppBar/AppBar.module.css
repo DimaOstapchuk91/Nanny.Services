@@ -1,12 +1,9 @@
-.appBox {
-  max-width: 100%;
-  position: relative;
-}
-
 .appWrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.absolute {
   padding: 20px 96px;
   position: absolute;
   left: 0;
@@ -15,11 +12,27 @@
   border-bottom: 1px solid rgba(251, 251, 251, 0.4);
 }
 
+.appFix {
+  background-color: var(--bg-theme);
+}
+.fixed {
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 30px 128px;
+}
+
 .appNavWrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.navRight {
   gap: 92px;
+}
+
+.appCenter {
+  gap: 225px;
 }
 
 .logo {

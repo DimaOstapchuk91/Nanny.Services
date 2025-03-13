@@ -20,9 +20,12 @@ const RegistrationForm = ({ onClose }) => {
   // };
 
   const onSubmit = async data => {
+    console.log(data.email);
     try {
       await registerUser(data.name, data.email, data.password);
+
       successfullyToast('Successful registration');
+
       onClose();
     } catch (error) {
       errToast(`Oops, ${error}`);
