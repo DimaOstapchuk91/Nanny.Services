@@ -8,7 +8,7 @@ const AppBar = () => {
   const { user } = useAuth();
 
   return (
-    <>
+    <div className={s.appBox}>
       <div className={s.appWrap}>
         <p className={s.logo}>Nanny.Services</p>
         <div className={s.appNavWrap}>
@@ -16,7 +16,7 @@ const AppBar = () => {
           {user ? <UserMenu /> : <AuthMenu />}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default AppBar;

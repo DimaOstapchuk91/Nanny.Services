@@ -1,12 +1,16 @@
+.appBox {
+  max-width: 100%;
+  position: relative;
+}
+
 .appWrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 96px;
   position: absolute;
-  top: 32px;
-  left: 32px;
-  right: 32px;
+  left: 0;
+  right: 0;
   z-index: 100;
   border-bottom: 1px solid rgba(251, 251, 251, 0.4);
 }
@@ -22,6 +26,6 @@
   color: var(--text-color-white);
   font-size: 24px;
   font-weight: 500;
-  line-height: 28px; /* 116.667% */
+  line-height: 28px;
   letter-spacing: -0.48px;
 }
