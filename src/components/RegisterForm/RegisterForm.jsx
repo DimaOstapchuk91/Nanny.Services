@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { orderSchemaReg } from '../../utils/formValidations.js';
 import s from './RegisterForm.module.css';
+import { errToast, successfullyToast } from '../../utils/toast.js';
 
 const RegistrationForm = ({ onClose }) => {
   const {
@@ -21,11 +22,11 @@ const RegistrationForm = ({ onClose }) => {
   const onSubmit = async data => {
     try {
       await registerUser(data.name, data.email, data.password);
-      alert('Успішна Реєстрація!');
+      successfullyToast('Successful registration');
+      onClose();
     } catch (error) {
-      console.error(error);
+      errToast(`Oops, ${error}`);
     }
-    onClose();
   };
 
   return (

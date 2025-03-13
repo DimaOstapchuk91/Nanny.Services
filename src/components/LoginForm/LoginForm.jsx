@@ -1,23 +1,11 @@
-// import { useState } from 'react';
 import { loginUser } from '../../services/authService.js';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { orderSchemaLogin } from '../../utils/formValidations.js';
 import s from './LoginForm.module.css';
+import { errToast, successfullyToast } from '../../utils/toast.js';
 
 const LoginForm = ({ onClose }) => {
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-  // const handleRegister = async () => {
-  //   try {
-  //     await registerUser(email, password);
-  //     alert('Користувача зареєстровано!');
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const {
     register,
     handleSubmit,
@@ -26,19 +14,14 @@ const LoginForm = ({ onClose }) => {
     resolver: yupResolver(orderSchemaLogin),
   });
 
-  // const handleLogout = async () => {
-  //   await logoutUser();
-  //   alert('Вийшли з акаунту!');
-  // };
-
   const onSubmit = async data => {
     try {
       await loginUser(data.email, data.password);
-      alert('Успішний вхід!');
+      successfullyToast('Successful Login');
+      onClose();
     } catch (error) {
-      console.error(error);
+      errToast(`Oops, ${error}`);
     }
-    onClose();
   };
 
   return (
