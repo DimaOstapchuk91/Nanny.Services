@@ -17,7 +17,11 @@ const HomePage = () => {
       </div>
       <div className={s.wrapImg}>
         <div className={s.totalNannies}>
-          <span className={s.checkIcon}></span>
+          <span className={s.checkWrap}>
+            <svg className={s.checkIcon} width='30' height='30'>
+              <use href={`${sprite}#icon-check`}></use>
+            </svg>
+          </span>
           <div>
             <p className={s.totalText}>Experienced nannies</p>
             <p className={s.totalNumber}>15,000</p>

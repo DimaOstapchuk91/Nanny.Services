@@ -45,3 +45,69 @@
   stroke: var(--text-color-white);
   fill: var(--text-color-white);
 }
+
+.wrapImg {
+  position: relative;
+  /* padding: 72px 0; */
+  width: calc(100% / 2);
+  background: linear-gradient(
+      0deg,
+      rgba(18, 20, 23, 0.1) 0%,
+      rgba(18, 20, 23, 0.1) 100%
+    ),
+    url(../../assets/img/home-img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 2dppx),
+  (min-resolution: 192dpi) {
+  .hero-section {
+    background: linear-gradient(
+        0deg,
+        rgba(18, 20, 23, 0.1) 0%,
+        rgba(18, 20, 23, 0.1) 100%
+      ),
+      url(../../assets/img/home-img@2x.jpg);
+  }
+}
+
+.totalNannies {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  max-width: 284px;
+  padding: 32px;
+  border-radius: 20px;
+  background-color: var(--bg-component-white);
+}
+
+.totalNannies {
+  display: flex;
+  gap: 16px;
+}
+
+.checkWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-theme);
+  padding: 12px;
+  border-radius: 13px;
+}
+
+.checkIcon {
+  fill: var(--text-color-white);
+}
+
+.totalText {
+  color: var(--text-base-gray);
+  margin-bottom: 6px;
+}
+
+.totalNumber {
+  font-size: 24px;
+  font-weight: 700;
+}
