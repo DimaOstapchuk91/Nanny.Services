@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LoginForm from '../LoginForm/LoginForm.jsx';
 import Modal from '../Modal/Modal.jsx';
 import RegistrationForm from '../RegisterForm/RegisterForm.jsx';
+import s from './AuthMenu.module.css';
 
 const AuthMenu = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -25,14 +26,22 @@ const AuthMenu = () => {
 
   return (
     <>
-      <ul>
+      <ul className={s.authList}>
         <li>
-          <button type='button' onClick={handleClickLogin}>
+          <button
+            className={s.loginBtn}
+            type='button'
+            onClick={handleClickLogin}
+          >
             Log In
           </button>
         </li>
         <li>
-          <button type='button' onClick={handleClickSignUp}>
+          <button
+            type='button'
+            className={s.registerBtn}
+            onClick={handleClickSignUp}
+          >
             Registration
           </button>
         </li>

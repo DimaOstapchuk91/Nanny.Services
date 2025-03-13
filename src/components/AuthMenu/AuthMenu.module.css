@@ -1,0 +1,41 @@
+.authList {
+  display: flex;
+  gap: 8px;
+}
+
+.loginBtn {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+  padding: 14px 40px;
+  background-color: transparent;
+  color: var(--text-color-white);
+  border-radius: 30px;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  transition: border-color 300ms ease;
+  cursor: pointer;
+}
+
+.loginBtn:hover,
+.loginBtn:focus {
+  border-color: rgba(251, 251, 251, 0.8);
+}
+
+.registerBtn {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+  color: var(--text-color-white);
+  padding: 14px 40px;
+  border-radius: 30px;
+  background-color: var(--bg-theme);
+  transition: opacity 300ms ease;
+  cursor: pointer;
+}
+
+.registerBtn:hover,
+.registerBtn:focus {
+  opacity: 0.8;
+}
