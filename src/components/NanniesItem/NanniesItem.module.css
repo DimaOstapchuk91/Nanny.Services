@@ -1,0 +1,88 @@
+.nanniesItem {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background-color: var(--bg-component-white);
+  margin-bottom: 32px;
+}
+
+.nanniesItem:last-child {
+  margin-bottom: 0;
+}
+
+.imgWrap {
+  padding: 12px;
+  min-width: 120px;
+  border: 2px solid var(--bg-theme-light);
+  border-radius: 30px;
+}
+
+.nanniesImg {
+  border-radius: 15px;
+}
+
+.nanniesInfo {
+  width: 100%;
+}
+
+.nanniesSocial {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.socialList {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.socialText {
+  color: var(--text-dark-gray);
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.socialInfo {
+  display: flex;
+  align-items: start;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.socialInfo span {
+  color: var(--color-light-green);
+  margin-left: 4px;
+}
+
+.socialItem:nth-child(2) {
+  padding: 0 16px;
+  border-right: 1px solid rgba(17, 16, 28, 0.2);
+  border-left: 1px solid rgba(17, 16, 28, 0.2);
+}
+
+.locationIcon {
+  fill: transparent;
+  stroke: var(--text-color-black);
+  margin-right: 8px;
+}
+
+.ratingIcon {
+  fill: var(--color-yellow);
+  stroke: var(--color-yellow);
+  margin-right: 8px;
+}
+
+.nanniesLive {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.favoriteBtn {
+  background: transparent;
+}
+
+.favoriteIcon {
+  fill: transparent;
+  stroke: var(--text-color-black);
+}

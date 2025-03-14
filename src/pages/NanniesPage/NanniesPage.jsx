@@ -1,8 +1,9 @@
 import NanniesList from '../../components/NanniesList/NanniesList.jsx';
+import s from './NanniesPage.module.css';
 
 const NanniesPage = () => {
   return (
-    <div className='container'>
+    <div className={s.pageWrap}>
       <NanniesList />
     </div>
   );

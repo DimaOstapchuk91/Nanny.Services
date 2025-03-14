@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchNannies } from '../../services/nanniesService.js';
+import NanniesItem from '../NanniesItem/NanniesItem.jsx';
+import s from './NanniesLost.module.css';
 
 const NanniesList = () => {
   const [nannies, setNannies] = useState([]);
@@ -8,11 +10,10 @@ const NanniesList = () => {
     fetchNannies().then(setNannies);
   }, []);
 
-  console.log(nannies[0]?.id);
   return (
-    <ul>
+    <ul className={s.nanniesList}>
       {nannies?.map(nanny => (
-        <li key={nanny.id}>{nanny.name}</li>
+        <NanniesItem key={nanny.id} nannies={nanny} />
       ))}
     </ul>
   );
