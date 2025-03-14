@@ -12,8 +12,12 @@
 }
 
 .imgWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 12px;
   min-width: 120px;
+  height: 120px;
   border: 2px solid var(--bg-theme-light);
   border-radius: 30px;
 }
@@ -35,6 +39,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 8px;
 }
 
 .socialText {
@@ -86,4 +91,48 @@
 .favoriteIcon {
   fill: transparent;
   stroke: var(--text-color-black);
+}
+
+.nanniesName {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.experienceList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.experienceItem {
+  padding: 8px 16px;
+  background-color: var(--background-page);
+  border-radius: 24px;
+}
+
+.experienceText {
+  color: var(--text-dark-gray);
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.experienceText span {
+  color: var(--text-color-black);
+}
+
+.nanniesAbout {
+  color: var(--text-base-gray);
+  margin-bottom: 14px;
+}
+
+.readBtn {
+  background: transparent;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  text-decoration-line: underline;
+  line-height: 20px;
+  cursor: pointer;
 }

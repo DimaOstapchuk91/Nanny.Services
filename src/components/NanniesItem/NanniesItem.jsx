@@ -1,5 +1,6 @@
 import s from './NanniesItem.module.css';
 import sprite from '../../assets/sprite.svg';
+import { calculateAge } from '../../utils/calculateAge.js';
 
 const NanniesItem = ({ nannies }) => {
   const {
@@ -17,6 +18,8 @@ const NanniesItem = ({ nannies }) => {
     rating,
     reviews,
   } = nannies;
+
+  const age = calculateAge(birthday);
 
   return (
     <li className={s.nanniesItem}>
@@ -64,10 +67,44 @@ const NanniesItem = ({ nannies }) => {
             </button>
           </div>
         </div>
-        <h3></h3>
-        <div></div>
-        <p></p>
-        <button type='button'></button>
+        <h3 className={s.nanniesName}>{name}</h3>
+        <ul className={s.experienceList}>
+          <li className={s.experienceItem}>
+            <p className={s.experienceText}>
+              {`Age: `} <span>{age}</span>
+            </p>
+          </li>
+          <li className={s.experienceItem}>
+            <p className={s.experienceText}>
+              {`Experience: `} <span>{experience}</span>
+            </p>
+          </li>
+          <li className={s.experienceItem}>
+            <p className={s.experienceText}>
+              {`Kids Age: `} <span>{kids_age}</span>
+            </p>
+          </li>
+          <li className={s.experienceItem}>
+            <p className={s.experienceText}>
+              {`Characters: `}
+              <span>
+                {characters
+                  .map(item => item.charAt(0).toUpperCase() + item.slice(1))
+                  .join(', ')}
+              </span>
+            </p>
+          </li>
+          <li className={s.experienceItem}>
+            <p className={s.experienceText}>
+              {`Education: `} <span>{education}</span>
+            </p>
+          </li>
+        </ul>
+        <p className={s.nanniesAbout}>{about}</p>
+
+        <button className={s.readBtn} type='button'>
+          Read more
+        </button>
       </div>
     </li>
   );
