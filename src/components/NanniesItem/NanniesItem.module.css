@@ -136,3 +136,65 @@
   line-height: 20px;
   cursor: pointer;
 }
+
+.reviewsList {
+  margin-bottom: 48px;
+}
+
+.reviewsItem {
+  margin-bottom: 24px;
+}
+
+.reviewsItem:last-child {
+  margin-bottom: 0;
+}
+
+.reviewsInfo {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reviewIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: 100%;
+  background-color: var(--bg-theme-light);
+  color: var(--bg-theme);
+}
+
+.reviewNameRating {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.reviewComment {
+  color: var(--text-base-gray);
+  line-height: 20px;
+}
+
+.appointmentBtn {
+  padding: 14px 28px;
+  color: var(--text-color-white);
+  border-radius: 30px;
+  background-color: var(--bg-theme);
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.16px;
+  transition: opacity 300ms ease;
+  cursor: pointer;
+}
+
+.appointmentBtn:hover,
+.appointmentBtn:focus {
+  opacity: 0.8;
+}

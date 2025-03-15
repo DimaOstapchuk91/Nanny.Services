@@ -21,6 +21,8 @@ const NanniesItem = ({ nannies }) => {
 
   const age = calculateAge(birthday);
 
+  console.log(id);
+
   return (
     <li className={s.nanniesItem}>
       <div className={s.imgWrap}>
@@ -104,6 +106,30 @@ const NanniesItem = ({ nannies }) => {
 
         <button className={s.readBtn} type='button'>
           Read more
+        </button>
+        <ul className={s.reviewsList}>
+          {reviews.map((review, i) => (
+            <li className={s.reviewsItem} key={i}>
+              <div className={s.reviewsInfo}>
+                <p className={s.reviewIcon}>
+                  {review.reviewer.charAt(0).toUpperCase()}
+                </p>
+                <div>
+                  <p className={s.reviewNameRating}>{review.reviewer}</p>
+                  <p className={s.reviewNameRating}>
+                    <svg className={s.ratingIcon} width='16' height='16'>
+                      <use href={`${sprite}#icon-star`}></use>
+                    </svg>
+                    {review.rating.toFixed(1)}
+                  </p>
+                </div>
+              </div>
+              <p className={s.reviewComment}>{review.comment}</p>
+            </li>
+          ))}
+        </ul>
+        <button className={s.appointmentBtn} type='button'>
+          Make an appointment
         </button>
       </div>
     </li>
