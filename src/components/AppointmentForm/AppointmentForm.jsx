@@ -1,18 +1,20 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import s from './AppointmentForm.module.css';
+import { orderNannyesSchema } from '../../utils/formValidations.js';
 
-const AppointmentForm = ({ nannyName, nannyAvatar }) => {
+const AppointmentForm = ({ nannyName, nannyAvatar, onClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    // resolver: yupResolver(orderSchemaLogin),
+    resolver: yupResolver(orderNannyesSchema),
   });
 
   const onSubmit = async data => {
     console.log(data);
+    onClose();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
@@ -39,7 +41,9 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
       <ul className={s.inputWrap}>
         <li className={s.inputlabel}>
           <label>
-            {errors.email && <p className={s.error}>{errors.email.message}</p>}
+            {errors.address && (
+              <p className={s.error}>{errors.address.message}</p>
+            )}
             <input
               id='address'
               type='text'
@@ -52,12 +56,12 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
 
         <li className={s.inputlabel}>
           <label>
-            {errors.password && (
-              <p className={s.error}>{errors.password.message}</p>
+            {errors.number && (
+              <p className={s.error}>{errors.number.message}</p>
             )}
             <input
               id='number'
-              type='phone'
+              type='text'
               name='number'
               placeholder='+380'
               className={s.inputForm}
@@ -67,7 +71,7 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
         </li>
         <li className={s.inputlabel}>
           <label>
-            {errors.email && <p className={s.error}>{errors.email.message}</p>}
+            {errors.age && <p className={s.error}>{errors.age.message}</p>}
             <input
               id='age'
               type='number'
@@ -81,15 +85,13 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
 
         <li className={s.inputlabel}>
           <label>
-            {errors.password && (
-              <p className={s.error}>{errors.password.message}</p>
-            )}
+            {errors.time && <p className={s.error}>{errors.time.message}</p>}
             <input
               id='time'
               name='time'
               type='time'
               className={s.inputForm}
-              {...register('password')}
+              {...register('time')}
             />
           </label>
         </li>
@@ -97,9 +99,7 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
       <ul className={s.userInfo}>
         <li>
           <label className={s.inputlabel}>
-            {errors.password && (
-              <p className={s.error}>{errors.password.message}</p>
-            )}
+            {errors.email && <p className={s.error}>{errors.email.message}</p>}
             <input
               id='email'
               name='email'
@@ -112,8 +112,8 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
         </li>
         <li>
           <label className={s.inputlabel}>
-            {errors.password && (
-              <p className={s.error}>{errors.password.message}</p>
+            {errors.pearents && (
+              <p className={s.error}>{errors.pearents.message}</p>
             )}
             <input
               id='pearents'
@@ -127,8 +127,8 @@ const AppointmentForm = ({ nannyName, nannyAvatar }) => {
         </li>
         <li>
           <label className={s.inputlabel}>
-            {errors.password && (
-              <p className={s.error}>{errors.password.message}</p>
+            {errors.comment && (
+              <p className={s.error}>{errors.comment.message}</p>
             )}
             <textarea
               id='comment'

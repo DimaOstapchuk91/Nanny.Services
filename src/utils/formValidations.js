@@ -28,3 +28,13 @@ export const orderSchemaReg = Yup.object({
   email: emailValid,
   password: passwordValid,
 });
+
+export const orderNannyesSchema = Yup.object().shape({
+  address: Yup.string().required('Address is required'),
+  number: Yup.string().required('Phone number is required'),
+  age: Yup.number().required("Child's age is required"),
+  time: Yup.string().required('Time is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  pearents: Yup.string().required("Parent's name is required"),
+  comment: Yup.string().required('Comment is required'),
+});
