@@ -1,6 +1,8 @@
+import { useContext, useState } from 'react';
 import s from './NanniesItem.module.css';
 import sprite from '../../assets/sprite.svg';
 import { calculateAge } from '../../utils/calculateAge.js';
+import { FavoritesContext } from '../FavoritesProvider/FavoritesProvider.jsx';
 
 const NanniesItem = ({ nannies }) => {
   const {
@@ -20,8 +22,12 @@ const NanniesItem = ({ nannies }) => {
   } = nannies;
 
   const age = calculateAge(birthday);
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
+  const { favoriteIds, toggleFavorite } = useContext(FavoritesContext);
 
-  console.log(id);
+  const toggleReviews = () => {
+    setIsReviewsVisible(prev => !prev);
+  };
 
   return (
     <li className={s.nanniesItem}>
@@ -62,7 +68,12 @@ const NanniesItem = ({ nannies }) => {
                 </p>
               </li>
             </ul>
-            <button className={s.favoriteBtn}>
+            <button
+              className={`${s.favoriteBtn} ${
+                favoriteIds.includes(id) ? s.favoriteActive : ''
+              }`}
+              onClick={() => toggleFavorite(id)}
+            >
               <svg className={s.favoriteIcon} width='26' height='26'>
                 <use href={`${sprite}#icon-heart-normal`}></use>
               </svg>
@@ -104,35 +115,50 @@ const NanniesItem = ({ nannies }) => {
         </ul>
         <p className={s.nanniesAbout}>{about}</p>
 
-        <button className={s.readBtn} type='button'>
-          Read more
-        </button>
-        <ul className={s.reviewsList}>
-          {reviews.map((review, i) => (
-            <li className={s.reviewsItem} key={i}>
-              <div className={s.reviewsInfo}>
-                <p className={s.reviewIcon}>
-                  {review.reviewer.charAt(0).toUpperCase()}
-                </p>
-                <div>
-                  <p className={s.reviewNameRating}>{review.reviewer}</p>
-                  <p className={s.reviewNameRating}>
-                    <svg className={s.ratingIcon} width='16' height='16'>
-                      <use href={`${sprite}#icon-star`}></use>
-                    </svg>
-                    {review.rating.toFixed(1)}
+        {!isReviewsVisible ? (
+          <button className={s.readBtn} type='button' onClick={toggleReviews}>
+            Read more
+          </button>
+        ) : null}
+
+        <div
+          className={`${s.reviewsContainer} ${
+            isReviewsVisible ? s.visible : s.hidden
+          }`}
+        >
+          <ul className={s.reviewsList}>
+            {reviews.map((review, i) => (
+              <li className={s.reviewsItem} key={i}>
+                <div className={s.reviewsInfo}>
+                  <p className={s.reviewIcon}>
+                    {review.reviewer.charAt(0).toUpperCase()}
                   </p>
+                  <div>
+                    <p className={s.reviewNameRating}>{review.reviewer}</p>
+                    <p className={s.reviewNameRating}>
+                      <svg className={s.ratingIcon} width='16' height='16'>
+                        <use href={`${sprite}#icon-star`}></use>
+                      </svg>
+                      {review.rating.toFixed(1)}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <p className={s.reviewComment}>{review.comment}</p>
-            </li>
-          ))}
-        </ul>
-        <button className={s.appointmentBtn} type='button'>
-          Make an appointment
-        </button>
+                <p className={s.reviewComment}>{review.comment}</p>
+              </li>
+            ))}
+          </ul>
+          <div className={s.btnWrap}>
+            <button className={s.appointmentBtn} type='button'>
+              Make an appointment
+            </button>
+            <button className={s.hideBtn} type='button' onClick={toggleReviews}>
+              Hide reviews
+            </button>
+          </div>
+        </div>
       </div>
     </li>
   );
 };
+
 export default NanniesItem;

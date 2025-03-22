@@ -86,11 +86,17 @@
 
 .favoriteBtn {
   background: transparent;
+  cursor: pointer;
 }
 
 .favoriteIcon {
   fill: transparent;
   stroke: var(--text-color-black);
+}
+
+.favoriteActive .favoriteIcon {
+  fill: var(--color-red);
+  stroke: var(--color-red);
 }
 
 .nanniesName {
@@ -138,6 +144,7 @@
 }
 
 .reviewsList {
+  margin-top: 48px;
   margin-bottom: 48px;
 }
 
@@ -197,4 +204,34 @@
 .appointmentBtn:hover,
 .appointmentBtn:focus {
   opacity: 0.8;
+}
+
+.reviewsContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.reviewsContainer.visible {
+  max-height: 500px; /* Вистав необхідну висоту */
+  opacity: 1;
+}
+
+.reviewsContainer.hidden {
+  max-height: 0;
+  opacity: 0;
+}
+
+.btnWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hideBtn {
+  background: transparent;
+  font-weight: 500;
+  text-decoration-line: underline;
+  cursor: pointer;
+  margin-top: 8px;
 }

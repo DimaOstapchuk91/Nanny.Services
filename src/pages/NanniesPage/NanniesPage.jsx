@@ -1,10 +1,17 @@
+import { useEffect, useState } from 'react';
 import NanniesList from '../../components/NanniesList/NanniesList.jsx';
-import s from './NanniesPage.module.css';
+import { fetchNannies } from '../../services/nanniesService.js';
 
 const NanniesPage = () => {
+  const [nannies, setNannies] = useState([]);
+
+  useEffect(() => {
+    fetchNannies().then(setNannies);
+  }, []);
+
   return (
-    <div className={s.pageWrap}>
-      <NanniesList />
+    <div className='container'>
+      <NanniesList nannies={nannies} />
     </div>
   );
 };
