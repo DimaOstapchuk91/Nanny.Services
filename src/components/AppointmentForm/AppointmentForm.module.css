@@ -1,0 +1,112 @@
+.form {
+  max-width: 600px;
+  max-height: 908px;
+  background-color: var(--bg-component-white);
+  padding: 64px;
+}
+
+.subtitle {
+  color: #11101c;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.8px;
+  margin-bottom: 20px;
+}
+
+.formText {
+  color: var(--text-base-gray);
+  line-height: 20px;
+  margin-bottom: 40px;
+}
+
+.nannyInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.nannyImg {
+  border-radius: 15px;
+}
+
+.nannyText {
+  color: var(--text-dark-gray);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-bottom: 4px;
+}
+
+.nannyName {
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.inputWrap {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 8px;
+  margin-bottom: 16px;
+}
+
+.inputlabel {
+  width: calc((100% - 8px) / 2);
+}
+
+.inputForm {
+  width: 100%;
+  color: var(--text-color-black);
+  padding: 16px 18px;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  outline: none;
+  appearance: none;
+}
+
+.inputFormt[type='time']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.textarea {
+  width: 100%;
+  color: var(--text-color-black);
+  padding: 16px 18px;
+  height: 114px;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  outline: none;
+  resize: none;
+}
+
+.inputForm::placeholder,
+.textarea::placeholder {
+  color: var(--text-color-black);
+}
+
+.submit {
+  color: var(--bg-component-white);
+  background-color: var(--bg-theme);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 30px;
+  width: 100%;
+  cursor: pointer;
+  transition: opacity 300ms ease;
+}
+
+.submit:hover {
+  opacity: 0.8;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}

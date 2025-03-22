@@ -3,6 +3,8 @@ import s from './NanniesItem.module.css';
 import sprite from '../../assets/sprite.svg';
 import { calculateAge } from '../../utils/calculateAge.js';
 import { FavoritesContext } from '../FavoritesProvider/FavoritesProvider.jsx';
+import Modal from '../Modal/Modal.jsx';
+import AppointmentForm from '../AppointmentForm/AppointmentForm.jsx';
 
 const NanniesItem = ({ nannies }) => {
   const {
@@ -24,9 +26,18 @@ const NanniesItem = ({ nannies }) => {
   const age = calculateAge(birthday);
   const [isReviewsVisible, setIsReviewsVisible] = useState(false);
   const { favoriteIds, toggleFavorite } = useContext(FavoritesContext);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const toggleReviews = () => {
     setIsReviewsVisible(prev => !prev);
+  };
+
+  const handleModalOpen = () => {
+    setIsOpenModal(true);
+  };
+
+  const handleModalClose = () => {
+    setIsOpenModal(false);
   };
 
   return (
@@ -148,13 +159,24 @@ const NanniesItem = ({ nannies }) => {
             ))}
           </ul>
           <div className={s.btnWrap}>
-            <button className={s.appointmentBtn} type='button'>
+            <button
+              className={s.appointmentBtn}
+              onClick={handleModalOpen}
+              type='button'
+            >
               Make an appointment
             </button>
             <button className={s.hideBtn} type='button' onClick={toggleReviews}>
               Hide reviews
             </button>
           </div>
+          <Modal isOpen={isOpenModal} onClose={handleModalClose}>
+            <AppointmentForm
+              nannyName={name}
+              nannyAvatar={avatar_url}
+              onClose={handleModalClose}
+            />
+          </Modal>
         </div>
       </div>
     </li>
