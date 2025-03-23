@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import s from './Modal.module.css';
 import sprite from '../../assets/sprite.svg';
+import { createPortal } from 'react-dom';
+
+const modalRoot = document.getElementById('modal-root');
 
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
@@ -25,7 +28,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     return null;
   }
 
-  return (
+  return createPortal(
     <div className={s.backdrop} onClick={onClose}>
       <div className={s.window} onClick={e => e.stopPropagation()}>
         <button className={s.closeButton} onClick={onClose}>
@@ -35,7 +38,8 @@ const Modal = ({ isOpen, onClose, children }) => {
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    modalRoot
   );
 };
 

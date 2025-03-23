@@ -5,8 +5,11 @@ import { calculateAge } from '../../utils/calculateAge.js';
 import { FavoritesContext } from '../FavoritesProvider/FavoritesProvider.jsx';
 import Modal from '../Modal/Modal.jsx';
 import AppointmentForm from '../AppointmentForm/AppointmentForm.jsx';
+import { useAuth } from '../../hooks/useAuth.js';
+import LoginForm from '../LoginForm/LoginForm.jsx';
 
 const NanniesItem = ({ nannies }) => {
+  const { user } = useAuth();
   const {
     about,
     id,
@@ -27,9 +30,14 @@ const NanniesItem = ({ nannies }) => {
   const [isReviewsVisible, setIsReviewsVisible] = useState(false);
   const { favoriteIds, toggleFavorite } = useContext(FavoritesContext);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const toggleReviews = () => {
     setIsReviewsVisible(prev => !prev);
+  };
+
+  const handleClose = () => {
+    setIsLogin(false);
   };
 
   const handleModalOpen = () => {
@@ -81,9 +89,15 @@ const NanniesItem = ({ nannies }) => {
             </ul>
             <button
               className={`${s.favoriteBtn} ${
-                favoriteIds.includes(id) ? s.favoriteActive : ''
+                favoriteIds.includes(id) && user ? s.favoriteActive : ''
               }`}
-              onClick={() => toggleFavorite(id)}
+              onClick={() => {
+                if (user) {
+                  toggleFavorite(id);
+                  return;
+                }
+                setIsLogin(true);
+              }}
             >
               <svg className={s.favoriteIcon} width='26' height='26'>
                 <use href={`${sprite}#icon-heart-normal`}></use>
@@ -176,6 +190,9 @@ const NanniesItem = ({ nannies }) => {
               nannyAvatar={avatar_url}
               onClose={handleModalClose}
             />
+          </Modal>
+          <Modal isOpen={isLogin} onClose={handleClose}>
+            <LoginForm onClose={handleClose} />
           </Modal>
         </div>
       </div>
