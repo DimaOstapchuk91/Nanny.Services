@@ -5,14 +5,17 @@ import NanniesList from '../../components/NanniesList/NanniesList.jsx';
 
 const FavoritesPage = () => {
   const [nannies, setNannies] = useState([]);
+
   const { favoriteIds } = useContext(FavoritesContext);
 
   useEffect(() => {
     fetchNannies().then(setNannies);
   }, []);
 
+  console.log(nannies.map(item => item.name_index));
+
   // Фільтруємо тільки обрані няні
-  const favoriteNannies = nannies.filter(nanny =>
+  const favoriteNannies = nannies?.filter(nanny =>
     favoriteIds.includes(nanny.id)
   );
 

@@ -1,77 +1,131 @@
 import { useState, useEffect } from 'react';
-import { getDatabase, ref, get, query, orderByChild } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  query,
+  orderByChild,
+  limitToFirst,
+  startAfter,
+  onValue,
+  limitToLast,
+  endBefore,
+} from 'firebase/database';
 
 const usePagination = filter => {
   const [nannies, setNannies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lastKey, setLastKey] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
+  const [isDescending, setIsDescending] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    const db = getDatabase();
-    let q = query(ref(db, 'nannies'));
-
-    // Сортування
-    switch (filter) {
-      case 'A to Z':
-        q = query(ref(db, 'nannies'), orderByChild('name'));
-        break;
-      case 'Z to A':
-        q = query(ref(db, 'nannies'), orderByChild('name'));
-        break;
-      case 'Price: Low to High':
-        q = query(ref(db, 'nannies'), orderByChild('price_per_hour'));
-        break;
-      case 'Price: High to Low':
-        q = query(ref(db, 'nannies'), orderByChild('price_per_hour'));
-        break;
-      case 'Rating: Low to High':
-        q = query(ref(db, 'nannies'), orderByChild('rating'));
-        break;
-      case 'Rating: High to Low':
-        q = query(ref(db, 'nannies'), orderByChild('rating'));
-        break;
-      default:
-        // За замовчуванням, можна сортувати за іменем або іншим полем
-        q = query(ref(db, 'nannies'));
-        break;
+    if (
+      filter === 'Z to A' ||
+      filter === 'Price: High to Low' ||
+      filter === 'Rating: Low to High'
+    ) {
+      setIsDescending(true);
+    } else {
+      setIsDescending(false);
     }
-
-    // Отримуємо дані з Firebase
-    get(q)
-      .then(snapshot => {
-        const data = snapshot.val() || {};
-        const loadedNannies = Object.keys(data).map(key => ({
-          id: key,
-          ...data[key],
-        }));
-
-        // Додаткове сортування на клієнті
-        if (filter === 'A to Z') {
-          loadedNannies.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (filter === 'Z to A') {
-          loadedNannies.sort((a, b) => b.name.localeCompare(a.name));
-        } else if (filter === 'Price: Low to High') {
-          loadedNannies.sort((a, b) => a.price_per_hour - b.price_per_hour);
-        } else if (filter === 'Price: High to Low') {
-          loadedNannies.sort((a, b) => b.price_per_hour - a.price_per_hour);
-        } else if (filter === 'Rating: Low to High') {
-          loadedNannies.sort((a, b) => a.rating - b.rating);
-        } else if (filter === 'Rating: High to Low') {
-          loadedNannies.sort((a, b) => b.rating - a.rating);
-        }
-
-        setNannies(loadedNannies);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-        setLoading(false);
-      });
-
-    return () => {};
   }, [filter]);
 
-  return { nannies, loading };
+  const fetchData = (reset = false) => {
+    setLoading(true);
+    const db = getDatabase();
+    const sortKey = getSortKey(filter);
+
+    let q;
+    if (reset) {
+      // Для нового запиту
+      if (isDescending) {
+        q = query(ref(db, 'nannies'), orderByChild(sortKey), limitToLast(3));
+      } else {
+        q = query(ref(db, 'nannies'), orderByChild(sortKey), limitToFirst(3));
+      }
+    } else {
+      console.log('Last Key:', lastKey, 'Type:', typeof lastKey);
+      if (isDescending) {
+        q = query(
+          ref(db, 'nannies'),
+          orderByChild(sortKey),
+          endBefore(lastKey),
+          limitToLast(3)
+        );
+      } else {
+        q = query(
+          ref(db, 'nannies'),
+          orderByChild(sortKey),
+          startAfter(lastKey),
+          limitToFirst(3)
+        );
+      }
+    }
+
+    onValue(q, snapshot => {
+      if (!snapshot.exists()) {
+        setHasMore(false);
+        setLoading(false);
+        return;
+      }
+
+      const loadedNannies = [];
+      let newLastKey = null;
+
+      snapshot.forEach(childSnapshot => {
+        loadedNannies.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val(),
+        });
+
+        if (sortKey === 'name') {
+          newLastKey = childSnapshot.val().name;
+        } else if (sortKey === 'price_per_hour') {
+          newLastKey = childSnapshot.val().price_per_hour;
+        } else if (sortKey === 'rating') {
+          newLastKey = childSnapshot.val().rating;
+        }
+      });
+
+      if (isDescending) {
+        loadedNannies.reverse();
+        newLastKey = loadedNannies[loadedNannies.length - 1][sortKey];
+      }
+
+      if (loadedNannies.length < 3) setHasMore(false);
+      else setHasMore(true);
+
+      setNannies(prev => (reset ? loadedNannies : [...prev, ...loadedNannies]));
+      setLastKey(newLastKey);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchData(true);
+  }, [filter, isDescending]);
+
+  const showMore = () => {
+    if (!loading && hasMore) fetchData();
+  };
+
+  return { nannies, loading, hasMore, showMore };
+};
+
+const getSortKey = filter => {
+  switch (filter) {
+    case 'A to Z':
+    case 'Z to A':
+      return 'name';
+    case 'Price: Low to High':
+    case 'Price: High to Low':
+      return 'price_per_hour';
+    case 'Rating: Low to High':
+    case 'Rating: High to Low':
+      return 'rating';
+    default:
+      return 'name';
+  }
 };
 
 export default usePagination;

@@ -5,14 +5,12 @@ export const FavoritesContext = createContext();
 export const FavoritesProvider = ({ children }) => {
   const [favoriteIds, setFavoriteIds] = useState([]);
 
-  // Завантаження фаворитів з localStorage при старті
   useEffect(() => {
     const storedFavorites =
       JSON.parse(localStorage.getItem('favoriteNannies')) || [];
     setFavoriteIds(storedFavorites);
   }, []);
 
-  // Додавання або видалення няні з фаворитів
   const toggleFavorite = id => {
     setFavoriteIds(prevFavorites => {
       let updatedFavorites;

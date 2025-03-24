@@ -7,8 +7,6 @@ import { useAuth } from '../../hooks/useAuth.js';
 const UserMenu = () => {
   const { user } = useAuth();
 
-  console.log(user);
-
   const handleLogout = async () => {
     try {
       await logoutUser();

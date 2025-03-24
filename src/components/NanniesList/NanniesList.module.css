@@ -1,0 +1,48 @@
+.nanniesList {
+  margin-bottom: 64px;
+}
+
+.label {
+  margin-bottom: 32px;
+}
+
+.labelText {
+  color: var(--text-dark-gray);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 8px;
+}
+
+.selectInput {
+  color: var(--text-color-black);
+  padding: 16px 18px;
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid rgba(17, 16, 28, 0.1);
+  outline: none;
+  margin-bottom: 32px;
+}
+
+.btnWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBtn {
+  padding: 14px 28px;
+  color: var(--text-color-white);
+  border-radius: 30px;
+  background-color: var(--bg-theme);
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.16px;
+  transition: opacity 300ms ease;
+  cursor: pointer;
+}
+
+.paginationBtn:hover,
+.paginationBtn:focus {
+  opacity: 0.8;
+}
