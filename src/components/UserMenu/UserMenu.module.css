@@ -14,8 +14,10 @@
 }
 
 .userName {
+  width: 100px;
   margin-right: 24px;
   color: var(--text-color-white);
+  text-align: center;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;

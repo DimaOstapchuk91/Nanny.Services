@@ -1,11 +1,13 @@
-import { loginUser } from '../../services/authService.js';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { orderSchemaLogin } from '../../utils/formValidations.js';
 import s from './LoginForm.module.css';
 import { errToast, successfullyToast } from '../../utils/toast.js';
+import { loginUser } from '../../services/authService.js';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ onClose }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,6 +21,7 @@ const LoginForm = ({ onClose }) => {
       await loginUser(data.email, data.password);
       successfullyToast('Successful Login');
       onClose();
+      navigate('/nannies');
     } catch (error) {
       errToast(`Oops, ${error}`);
     }

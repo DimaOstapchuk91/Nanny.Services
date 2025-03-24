@@ -44,7 +44,6 @@ const usePagination = filter => {
         q = query(ref(db, 'nannies'), orderByChild(sortKey), limitToFirst(3));
       }
     } else {
-      console.log('Last Key:', lastKey, 'Type:', typeof lastKey);
       if (isDescending) {
         q = query(
           ref(db, 'nannies'),
@@ -80,6 +79,8 @@ const usePagination = filter => {
 
         if (sortKey === 'name') {
           newLastKey = childSnapshot.val().name;
+        } else if (sortKey === 'id') {
+          newLastKey = childSnapshot.val().id;
         } else if (sortKey === 'price_per_hour') {
           newLastKey = childSnapshot.val().price_per_hour;
         } else if (sortKey === 'rating') {
@@ -114,6 +115,8 @@ const usePagination = filter => {
 
 const getSortKey = filter => {
   switch (filter) {
+    case 'Show all':
+      return 'id';
     case 'A to Z':
     case 'Z to A':
       return 'name';
@@ -124,7 +127,7 @@ const getSortKey = filter => {
     case 'Rating: High to Low':
       return 'rating';
     default:
-      return 'name';
+      return 'id';
   }
 };
 

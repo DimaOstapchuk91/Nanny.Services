@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import s from './NanniesItem.module.css';
 import sprite from '../../assets/sprite.svg';
 import { calculateAge } from '../../utils/calculateAge.js';
-import { FavoritesContext } from '../FavoritesProvider/FavoritesProvider.jsx';
+import { FavoritesContext } from '../../context/FavoritesProvider.jsx';
 import Modal from '../Modal/Modal.jsx';
 import AppointmentForm from '../AppointmentForm/AppointmentForm.jsx';
 import { useAuth } from '../../hooks/useAuth.js';
@@ -49,7 +49,7 @@ const NanniesItem = ({ nannies }) => {
   };
 
   return (
-    <li className={s.nanniesItem}>
+    <li id={id} className={s.nanniesItem}>
       <div className={s.imgWrap}>
         <img
           className={s.nanniesImg}

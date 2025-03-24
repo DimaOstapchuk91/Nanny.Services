@@ -9,18 +9,33 @@ const AppNav = () => {
     <nav>
       <ul className={s.navList}>
         <li>
-          <NavLink className={s.navLink} to='/'>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${s.navLink} ${s.active}` : s.navLink
+            }
+            to='/'
+          >
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink className={s.navLink} to='/nannies'>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${s.navLink} ${s.active}` : s.navLink
+            }
+            to='/nannies'
+          >
             Nannies
           </NavLink>
         </li>
         {user && (
           <li>
-            <NavLink className={s.navLink} to='/favorites'>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? `${s.navLink} ${s.active}` : s.navLink
+              }
+              to='/favorites'
+            >
               Favorites
             </NavLink>
           </li>

@@ -1,15 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NanniesList from '../../components/NanniesList/NanniesList.jsx';
 import usePagination from '../../hooks/usePagination.js';
 import s from './NanniesPage.module.css';
 import Loader from '../../components/Loader/Loader.jsx';
+import sprite from '../../assets/sprite.svg';
 
 const NanniesPage = () => {
-  const [filter, setFilter] = useState('A to Z');
+  const [filter, setFilter] = useState('Show all');
   const { nannies, loading, hasMore, showMore } = usePagination(filter);
+
+  useEffect(() => {
+    if (nannies.length > 3) {
+      const secondLastItemId = `${nannies[nannies.length - 3].id}`;
+      const secondLastItem = document.getElementById(secondLastItemId);
+
+      if (secondLastItem) {
+        secondLastItem.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  }, [nannies]);
 
   const handleFilterChange = event => {
     setFilter(event.target.value);
+  };
+
+  const handleShowMore = () => {
+    showMore();
   };
 
   return (
@@ -29,15 +48,19 @@ const NanniesPage = () => {
           <option value='Rating: High to Low'>Rating: Low to High</option>
           <option value='Rating: Low to High'>Rating: High to Low</option>
         </select>
+        <svg className={s.selectIcon} width='20' height='20'>
+          <use href={`${sprite}#icon-chevron-down`}></use>
+        </svg>
       </label>
       <div className={s.listWrap}>
-        {loading ? <Loader /> : <NanniesList nannies={nannies} />}
+        <NanniesList nannies={nannies} />
+        {loading && <Loader />}
       </div>
       {hasMore && !loading && (
         <div className={s.btnWrap}>
           <button
             className={s.paginationBtn}
-            onClick={showMore}
+            onClick={handleShowMore}
             disabled={loading}
             type='button'
           >

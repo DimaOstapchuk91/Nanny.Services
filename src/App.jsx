@@ -4,21 +4,30 @@ import HomePage from './pages/HomePage/HomePage.jsx';
 import NanniesPage from './pages/NanniesPage/NanniesPage.jsx';
 import FavoritesPage from './pages/FavoritesPage/FavoritesPage.jsx';
 import { Toaster } from 'react-hot-toast';
-import { FavoritesProvider } from './components/FavoritesProvider/FavoritesProvider.jsx';
+import { FavoritesProvider } from './context/FavoritesProvider.jsx';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute.jsx';
+import AuthProvider from './context/AuthContext.jsx';
 
 function App() {
   return (
     <>
-      <FavoritesProvider>
-        <Layout>
-          <Routes>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/nannies' element={<NanniesPage />} />
-            <Route path='/favorites' element={<FavoritesPage />} />
-          </Routes>
-          <Toaster />
-        </Layout>
-      </FavoritesProvider>
+      <AuthProvider>
+        <FavoritesProvider>
+          <Layout>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/nannies' element={<NanniesPage />} />
+              <Route
+                path='/favorites'
+                element={
+                  <PrivateRoute component={<FavoritesPage />} redirectTo='/' />
+                }
+              />
+            </Routes>
+            <Toaster />
+          </Layout>
+        </FavoritesProvider>
+      </AuthProvider>
     </>
   );
 }

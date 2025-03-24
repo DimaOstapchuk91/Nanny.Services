@@ -1,11 +1,13 @@
-import { registerUser } from '../../services/authService.js';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { orderSchemaReg } from '../../utils/formValidations.js';
 import s from './RegisterForm.module.css';
 import { errToast, successfullyToast } from '../../utils/toast.js';
+import { registerUser } from '../../services/authService.js';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrationForm = ({ onClose }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,19 +16,14 @@ const RegistrationForm = ({ onClose }) => {
     resolver: yupResolver(orderSchemaReg),
   });
 
-  // const handleLogout = async () => {
-  //   await logoutUser();
-  //   alert('Вийшли з акаунту!');
-  // };
-
   const onSubmit = async data => {
-    console.log(data.email);
     try {
       await registerUser(data.name, data.email, data.password);
 
       successfullyToast('Successful registration');
 
       onClose();
+      navigate('/nannies');
     } catch (error) {
       errToast(`Oops, ${error}`);
     }

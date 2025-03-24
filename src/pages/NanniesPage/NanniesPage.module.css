@@ -1,5 +1,6 @@
 .label {
   margin-bottom: 32px;
+  position: relative;
 }
 
 .labelText {
@@ -11,13 +12,44 @@
 }
 
 .selectInput {
-  color: var(--text-color-black);
+  color: var(--text-color-white);
+  background-color: var(--bg-theme);
+  max-width: 228px;
   padding: 16px 18px;
   height: 52px;
   border-radius: 12px;
   border: 1px solid rgba(17, 16, 28, 0.1);
+  font-size: 18px;
   outline: none;
+  appearance: none;
+  position: relative;
   margin-bottom: 32px;
+  cursor: pointer;
+  transition: opacity 300ms ease;
+}
+
+.selectInput option {
+  background-color: var(--text-color-white);
+  color: var(--text-dark-gray);
+}
+
+.selectInput option:hover {
+  background-color: var(--bg-theme);
+}
+
+.selectInput:hover {
+  opacity: 0.8;
+}
+
+.selectIcon {
+  position: absolute;
+  z-index: 100;
+  fill: transparent;
+  stroke: var(--text-color-white);
+  right: 10px;
+  bottom: -12px;
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .btnWrap {
