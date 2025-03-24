@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import s from './AppointmentForm.module.css';
 import { orderNannyesSchema } from '../../utils/formValidations.js';
+import { successfullyToast } from '../../utils/toast.js';
 
 const AppointmentForm = ({ nannyName, nannyAvatar, onClose }) => {
   const {
@@ -12,10 +13,11 @@ const AppointmentForm = ({ nannyName, nannyAvatar, onClose }) => {
     resolver: yupResolver(orderNannyesSchema),
   });
 
-  const onSubmit = async data => {
-    console.log(data);
+  const onSubmit = async () => {
+    successfullyToast('successfully send data');
     onClose();
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
       <h2 className={s.subtitle}>Make an appointment with a babysitter</h2>
